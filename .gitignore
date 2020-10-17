@@ -1,6 +1,7 @@
-*/target/
-*/.settings/
-*/example_data/
-*/pom.xml
-*/.classpath
-*/.project
+target/
+.settings/
+example_data/
+**/pom.xml
+**/.classpath
+**/.project
+*.mp4
