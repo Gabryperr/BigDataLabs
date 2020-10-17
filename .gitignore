@@ -1,7 +1,6 @@
 target/
 .settings/
 example_data/
-**/pom.xml
 **/.classpath
 **/.project
 *.mp4
