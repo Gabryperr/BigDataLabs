@@ -79,7 +79,7 @@ implements Tool {
     
     
     // Execute the job and wait for completion
-    if (job.waitForCompletion(true)==true)
+    if (job.waitForCompletion(true))
     	exitCode=0;
     else
     	exitCode=1;
@@ -91,7 +91,7 @@ implements Tool {
   /** Main of the driver
    */
   
-  public static void main(String args[]) throws Exception {
+  public static void main(String[] args) throws Exception {
 	// Exploit the ToolRunner class to "configure" and run the Hadoop application
     int res = ToolRunner.run(new Configuration(), 
     		new DriverBigData(), args);
