@@ -1,26 +1,26 @@
 package it.polito.bigdata.hadoop;
 
-import java.io.IOException;
-
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
+
+import java.io.IOException;
 
 /**
  * Basic MapReduce Project - Reducer
  */
 class ReducerBigData extends Reducer<
-                Text,           // Input key type
-                IntWritable,    // Input value type
-                Text,           // Output key type
-                IntWritable> {  // Output value type
-    
+        Text,           // Input key type
+        IntWritable,    // Input value type
+        Text,           // Output key type
+        IntWritable> {  // Output value type
+
     @Override
-    
+
     protected void reduce(
-        Text key, // Input key type
-        Iterable<IntWritable> values, // Input value type
-        Context context) throws IOException, InterruptedException {
+            Text key, // Input key type
+            Iterable<IntWritable> values, // Input value type
+            Context context) throws IOException, InterruptedException {
 
         int occurrences = 0;
 
@@ -28,7 +28,7 @@ class ReducerBigData extends Reducer<
         for (IntWritable value : values) {
             occurrences = occurrences + value.get();
         }
-        
+
         context.write(key, new IntWritable(occurrences));
     }
 }
