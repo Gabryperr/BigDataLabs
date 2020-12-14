@@ -17,85 +17,85 @@ import org.apache.hadoop.util.ToolRunner;
 /**
  * MapReduce program
  */
-public class DriverBigData extends Configured 
-implements Tool {
+public class DriverBigData extends Configured
+        implements Tool {
 
-  @Override
-  public int run(String[] args) throws Exception {
+    /**
+     * Main of the driver
+     */
 
-    Path inputPath;
-    Path outputDir;
-    int numberOfReducers;
-	int exitCode;  
-	
-	// Parse the parameters
-	// Number of instances of the reducer class 
-    numberOfReducers = Integer.parseInt(args[0]);
-    // Folder containing the input data
-    inputPath = new Path(args[1]);
-    // Output folder
-    outputDir = new Path(args[2]);
-    
-    Configuration conf = this.getConf();
+    public static void main(String[] args) throws Exception {
+        // Exploit the ToolRunner class to "configure" and run the Hadoop application
+        int res = ToolRunner.run(new Configuration(),
+                new DriverBigData(), args);
 
-    // Define a new job
-    Job job = Job.getInstance(conf); 
+        System.exit(res);
+    }
 
-    // Assign a name to the job
-    job.setJobName("Basic MapReduce Project - WordCount example");
-    
-    // Set path of the input file/folder (if it is a folder, the job reads all the files in the specified folder) for this job
-    FileInputFormat.addInputPath(job, inputPath);
-    
-    // Set path of the output folder for this job
-    FileOutputFormat.setOutputPath(job, outputDir);
-    
-    // Specify the class of the Driver for this job
-    job.setJarByClass(DriverBigData.class);
-    
-    
-    // Set job input format
-    job.setInputFormatClass(TextInputFormat.class);
+    @Override
+    public int run(String[] args) throws Exception {
 
-    // Set job output format
-    job.setOutputFormatClass(TextOutputFormat.class);
-       
-    // Set map class
-    job.setMapperClass(MapperBigData.class);
-    
-    // Set map output key and value classes
-    job.setMapOutputKeyClass(Text.class);
-    job.setMapOutputValueClass(IntWritable.class);
-    
-    // Set reduce class
-    job.setReducerClass(ReducerBigData.class);
-        
-    // Set reduce output key and value classes
-    job.setOutputKeyClass(Text.class);
-    job.setOutputValueClass(IntWritable.class);
+        Path inputPath;
+        Path outputDir;
+        int numberOfReducers;
+        int exitCode;
 
-    // Set number of reducers
-    job.setNumReduceTasks(numberOfReducers);
-    
-    
-    // Execute the job and wait for completion
-    if (job.waitForCompletion(true))
-    	exitCode=0;
-    else
-    	exitCode=1;
-    	
-    return exitCode;
-  }
-  
+        // Parse the parameters
+        // Number of instances of the reducer class
+        numberOfReducers = Integer.parseInt(args[0]);
+        // Folder containing the input data
+        inputPath = new Path(args[1]);
+        // Output folder
+        outputDir = new Path(args[2]);
 
-  /** Main of the driver
-   */
-  
-  public static void main(String[] args) throws Exception {
-	// Exploit the ToolRunner class to "configure" and run the Hadoop application
-    int res = ToolRunner.run(new Configuration(), 
-    		new DriverBigData(), args);
+        Configuration conf = this.getConf();
 
-    System.exit(res);
-  }
+        // Define a new job
+        Job job = Job.getInstance(conf);
+
+        // Assign a name to the job
+        job.setJobName("Basic MapReduce Project - WordCount example");
+
+        // Set path of the input file/folder (if it is a folder, the job reads all the files in the specified folder) for this job
+        FileInputFormat.addInputPath(job, inputPath);
+
+        // Set path of the output folder for this job
+        FileOutputFormat.setOutputPath(job, outputDir);
+
+        // Specify the class of the Driver for this job
+        job.setJarByClass(DriverBigData.class);
+
+
+        // Set job input format
+        job.setInputFormatClass(TextInputFormat.class);
+
+        // Set job output format
+        job.setOutputFormatClass(TextOutputFormat.class);
+
+        // Set map class
+        job.setMapperClass(MapperBigData.class);
+
+        // Set map output key and value classes
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(IntWritable.class);
+
+        // Set reduce class
+        job.setReducerClass(ReducerBigData.class);
+
+        // Set reduce output key and value classes
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(IntWritable.class);
+
+        // Set number of reducers
+        job.setNumReduceTasks(numberOfReducers);
+
+
+        // Execute the job and wait for completion
+        if (job.waitForCompletion(true))
+            exitCode = 0;
+        else
+            exitCode = 1;
+
+        return exitCode;
+    }
 }
