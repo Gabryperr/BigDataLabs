@@ -1,0 +1,3 @@
+# retrieve single output file from part files locally
+cat part-r-* > output.txt
+
