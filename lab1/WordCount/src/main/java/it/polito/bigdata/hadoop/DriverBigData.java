@@ -54,9 +54,10 @@ public class DriverBigData extends Configured
         Job job = Job.getInstance(conf);
 
         // Assign a name to the job
-        job.setJobName("Basic MapReduce Project - WordCount example");
+        job.setJobName("Lab1 - WordCount");
 
-        // Set path of the input file/folder (if it is a folder, the job reads all the files in the specified folder) for this job
+        // Set path of the input file/folder
+        // (if it is a folder, the job reads all the files in the specified folder) for this job
         FileInputFormat.addInputPath(job, inputPath);
 
         // Set path of the output folder for this job
