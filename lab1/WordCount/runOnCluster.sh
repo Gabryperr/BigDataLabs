@@ -12,7 +12,7 @@ hadoop jar WordCount-1.0.0.jar it.polito.bigdata.hadoop.DriverBigData 10 /data/s
 # Get result
 rm WordCountOut.txt
 hdfs dfs -getmerge WordCountOut WordCountOut.txt
-sort -k2,2nr -o WordCountOut.txt WordCountOut.txt
+sort -k2,2nr WordCountOut.txt | less
 
 
 

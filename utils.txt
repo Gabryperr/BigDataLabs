@@ -1,3 +1,9 @@
 # retrieve single output file from part files locally
 cat part-r-* > output.txt
 
+# retrieve single output file from part files on the server
+hdfs dfs -getmerge out_folder combined_file.txt
+
+# sort the file using the second field only (-k2,2), 
+# numerically(-n) decreasing(-r), writing to output file (-o WordCountOut)
+sort -k2,2nr -o WordCountOut.txt WordCountOut.txt

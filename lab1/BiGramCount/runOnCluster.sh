@@ -12,7 +12,7 @@ hadoop jar BiGramCount-1.0.0.jar it.polito.bigdata.hadoop.DriverBigData 10 /data
 # Get result
 rm BiGramCount.txt
 hdfs dfs -getmerge BiGramCount BiGramCount.txt
-sort -k2,2nr -o BiGramCount.txt BiGramCount.txt
+sort -k2,2nr BiGramCount.txt | less
 
 
 
