@@ -17,6 +17,7 @@ class MapperBigData extends Mapper<
         Text,         // Output key type
         IntWritable> {// Output value type
 
+    @Override
     protected void map(
             LongWritable key,   // Input key type
             Text value,         // Input value type
