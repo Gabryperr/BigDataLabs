@@ -27,7 +27,6 @@ public class DriverBigData extends Configured implements Tool {
     public static void main(String[] args) throws Exception {
         // Exploit the ToolRunner class to "configure" and run the Hadoop application
         int res = ToolRunner.run(new Configuration(), new DriverBigData(), args);
-        System.out.println(args[0]);
 
         System.exit(res);
     }
