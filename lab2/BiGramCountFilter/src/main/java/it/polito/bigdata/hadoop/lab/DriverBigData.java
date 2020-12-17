@@ -3,12 +3,10 @@ package it.polito.bigdata.hadoop.lab;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.KeyValueTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
@@ -69,7 +67,7 @@ public class DriverBigData extends Configured implements Tool {
         job.setJarByClass(DriverBigData.class);
 
         // Set job input format
-        job.setInputFormatClass(TextInputFormat.class);
+        job.setInputFormatClass(KeyValueTextInputFormat.class);
 
         // Set job output format
         job.setOutputFormatClass(TextOutputFormat.class);
@@ -79,12 +77,7 @@ public class DriverBigData extends Configured implements Tool {
 
         // Set map output key and value classes
         job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(NullWritable.class);
-
-
-        // Set reduce output key and value classes
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
+        job.setMapOutputValueClass(Text.class);
 
         // Set number of reducers
         job.setNumReduceTasks(0);
