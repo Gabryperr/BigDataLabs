@@ -115,8 +115,7 @@ public class SparkDriver {
                 .filter(pair -> pair._2 == 3);
 
         // Store (bookID,startDay)
-        windows.keys().saveAsTextFile(outputPathPart2
-        );
+        windows.keys().saveAsTextFile(outputPathPart2);
 
 
     }
